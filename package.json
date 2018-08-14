@@ -3,9 +3,13 @@
   "version": "1.0.0",
   "license": "MIT",
   "idyll": {
-    "theme": "github",
+    "theme": "idyll",
     "layout": "blog",
-    "css": "styles.css"
+    "css": "styles.css",
+    "googleFonts": [
+      "Cabin Sketch",
+      "Lato"
+    ]
   },
   "dependencies": {
     "idyll": "^3.0.0",

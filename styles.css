@@ -1,3 +1,15 @@
+:root {
+  --blueberry-blue: #0948be;
+  --blueberry-blue-light: #4f86f7;
+  --pancake-light-brown: #fff2a4;
+  --pancake-medium-brown: #b45326;
+  --pancake-dark-brown: #4c2e26;
+}
+
+html, body {
+  background-color: var(--pancake-light-brown);
+  font-family: "Lato";
+}
 
 .d3-component svg {
   background: #ddd;
@@ -8,4 +20,50 @@
   .d3-component svg {
     max-height: 200px;
   }
+}
+
+.hed {
+  font-size: 52px;
+  color: var(--blueberry-blue);
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.dek {
+  font-size: 34px;
+  color: var(--pancake-medium-brown);
+  font-weight: 300;
+  font-family: 'Cabin Sketch'
+}
+
+a {
+  color: var(--blueberry-blue);
+}
+
+h2, h3, h4, h5, h6 {
+  color: var(--pancake-medium-brown);
+  border: none;
+  font-family: 'Cabin Sketch'
+}
+
+h2 {
+  font-size: 30px;
+}
+
+p, li {
+  color: var(--pancake-dark-brown);
+  font-size: 18px;
+}
+
+a, a:visited, a:hover {
+  color: black;
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: inset 0 -3px 0 var(--pancake-medium-brown);
+  transition: box-shadow 0.25s ease-out, color 0.25s ease-out;
+}
+
+a:hover {
+  color: white;
+  box-shadow: inset 0 -20px 0 var(--pancake-medium-brown);
 }
