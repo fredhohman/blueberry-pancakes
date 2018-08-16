@@ -18,7 +18,15 @@
 Algorithms are pervasive in modern society, and brain teaser type puzzles are a great way to get more familiar with algorithmic thinking!
 
 [pancake number:"3"/]
-[pancakeVis number:"3"/]
+[pancakeVis /]
+
+[var name:"state" value:0 /]
+[var name:"flip" value:0 /]
+[button onClick:`flip++`]
+  Flip me.
+[/button]
+You have flipped [Display value:flip format:"d" /] times.
+[pancakeStack flip:flip/]
 
 
 ## Problem
@@ -154,8 +162,6 @@ Now:
 
 
 [Fixed]
-
-[var name:"state" value:0 /]
 
 This component is implemented using D3:
 
