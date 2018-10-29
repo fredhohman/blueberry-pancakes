@@ -3,8 +3,8 @@ const D3Component = require('idyll-d3-component');
 const d3 = require('d3');
 
 const size = 650;
-const height = 400;
-const numOfPancakes = 6;
+const height = 300;
+const numOfPancakes = 5;
 
 function shuffle(array) {
     let currentIndex = array.length, temporaryValue, randomIndex;
@@ -45,6 +45,18 @@ class pancakeStack extends D3Component {
     reset(){
         const pancakesSorted = makePancakes(numOfPancakes);
         this.pancakes = shuffle(pancakesSorted);
+        this.flipNum
+
+        this.redraw();
+    }
+
+    doFlip(){
+        let flipNum = this.pancakes[0].number
+        let pancakesToBeFlipped = this.pancakes.slice(0, flipNum)
+
+        for (let i = 0; i < pancakesToBeFlipped.length; i++) {
+            this.pancakes[i] = pancakesToBeFlipped[pancakesToBeFlipped.length - 1 - i]
+        }
 
         this.redraw();
     }
@@ -52,7 +64,7 @@ class pancakeStack extends D3Component {
     initialize(node, props) {
 
         const pancakesSorted = makePancakes(numOfPancakes);
-        const pancakes = this.pancakes = shuffle(pancakesSorted);
+        this.pancakes = shuffle(pancakesSorted);
 
         const svg = this.svg = d3.select(node).append('svg');
         svg.attr('viewBox', `0 0 ${size} ${height}`)
@@ -60,7 +72,7 @@ class pancakeStack extends D3Component {
             .style('height', 'auto');
 
         let stack = svg.selectAll('.pancake')
-            .data(pancakes)
+            .data(this.pancakes)
             .enter()
             .append('g')
 
@@ -81,17 +93,17 @@ class pancakeStack extends D3Component {
             .classed('pancake-label', true)
     }
 
-    update(props) {
-        console.log('update pancake stack');
+    update(props, oldProps) {
 
-        let flipNum = this.pancakes[0].number
-        let pancakesToBeFlipped = this.pancakes.slice(0, flipNum)
-
-        for (let i = 0; i < pancakesToBeFlipped.length; i++) {
-            this.pancakes[i] = pancakesToBeFlipped[pancakesToBeFlipped.length - 1 - i]
+        if(props.flip > oldProps.flip){ // We pressed flip
+            console.log('Updating pancake stack');
+            this.doFlip();
+        }else if(props.reset > oldProps.reset){ // We pressed reset
+            console.log('Reseting pancake stack');
+            this.reset();
+        }else{
+            console.debug("Error!");
         }
-
-        this.redraw();
     }
 
     redraw(){
