@@ -43,7 +43,8 @@ Now, if you repeatedly look at the pancake on the top of the stack, then flip th
 
 ## Where can you start?
 
-One of the first things that I like to do when trying to prove something is to work through toy instances of the problem by hand (or in a Jupyter notebook) to get an intuition for what is going on. Let's say that instead of 100 blueberry pancakes, we have 5 blueberry pancakes (again in some random order), what happens if we apply the process described in the problem?
+One of the first things that I like to do when trying to prove something is to work through toy instances of the problem by hand (or in a Jupyter notebook) to get an intuition for what is going on.
+Let's say that instead of 100 blueberry pancakes, we have 5 blueberry pancakes (again in some random order), what happens if we apply the process described in the problem?
 
 
 [var name:"flip" value:0 /]
@@ -61,7 +62,11 @@ You have flipped [Display value:flip format:"d" /] times.
 [/button]
 
 
-Cool! We can see that the "1" pancake will come to the top pretty quickly and then get stuck there. If we repeat this a few times, we can also see that, sometimes, all the pancakes will end up sorted. Obviously, this does not happen every time, but it does happen often enough to be curious... Something about the flipping process that we are following wants to sort the pancakes. To dig further into this, we can consider the configurations in which this will happen: the last flip that we do must move the "1" pancake to the top, and keep all of the pancakes in order:
+Cool! We can see that the "1" pancake will come to the top pretty quickly and then get stuck there.
+If we repeat this a few times, we can also see that, sometimes, all the pancakes will end up sorted.
+This does not happen every time, but it does happen often enough to be curious...
+Something about the flipping process that we are following wants to sort the pancakes.
+To dig further into this, we can consider the configurations in which this will happen: the last flip that we do must move the "1" pancake to the top, and keep all of the pancakes in order:
 
 [ul]
 [li]5,4,3,2,1[/li]
@@ -189,13 +194,16 @@ Try to expand one more level and notice what happens! You may have noticed sever
 
 ## How can you finish?
 
-Experimentally convinced that this isn't an impossible task(!), and equipped with our observations about how the pancake flipping process behaves, we must now determine how to formally prove that the "1" pancake will always come out on top! As we hinted in the previous section, we will use our observation that once you flip the largest pancake in the stack you can't move it again.
+Experimentally convinced that this isn't an impossible task(!), and equipped with our observations about how the pancake flipping process behaves, we must now determine how to formally prove that the "1" pancake will always come out on top!
+As we hinted in the previous section, we will use our observation that once you flip the largest pancake in the stack you can't move it again.
 
 Formally, our proof is as follows:
 
 Consider a stack of [Equation]N[/Equation] sequential blueberry pancakes.
 
-First, observe that if the largest pancake, pancake [Equation]N[/Equation], in the stack is flipped, then it can never be moved again. For example, without loss of generality, let [Equation]N=100[/Equation]. Then if pancake 100 is on top of the stack and it is flipped, then it will move to the bottom of the stack. In order to move this pancake again, there would need to be a pancake with more than 100 blueberries in the stack, but we already said [Equation]N[/Equation]=100, so this cannot be done.
+First, observe that if the largest pancake, pancake [Equation]N[/Equation], in the stack is flipped, then it can never be moved again.
+For example, without loss of generality, let [Equation]N=100[/Equation].
+Then if pancake 100 is on top of the stack and it is flipped, then it will move to the bottom of the stack. In order to move this pancake again, there would need to be a pancake with more than 100 blueberries in the stack, but we already said [Equation]N[/Equation]=100, so this cannot be done.
 
 Now:
 
