@@ -15,6 +15,7 @@ $(document).ready(function(){
     });
 
     $('.rootNode').click(function() {
+        $(this).next().children("li").next().find("li").slideUp();
         $(this).next().children("li").slideToggle();
         $(this).siblings("li").next().find("li").slideUp();
     });
