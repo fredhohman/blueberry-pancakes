@@ -21,7 +21,18 @@ function makePancakes() {
   return pancakes;
 }
 
-const pancakes = makePancakes();
+function shuffle(a) {
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+let pancakes = makePancakes();
+
+pancakes = shuffle(pancakes)
+
 
 class pancakeVis extends D3Component {
 
@@ -58,9 +69,9 @@ class pancakeVis extends D3Component {
         }
       })
       .attr('r', 14)
-      .attr('fill', '#fff2a4')
+      .attr('fill', 'peru')
       .attr('stroke', '#b45326')
-      .attr('stroke-width', 2)
+      .attr('stroke-width', 1.5)
 
     svg.selectAll('text')
       .data(pancakes)
@@ -89,7 +100,7 @@ class pancakeVis extends D3Component {
       .attr('text-anchor', 'middle')
       .attr('fill', '#0948be')
       .style('font-size', '12px')
-      .style('font-weight', 700);
+      .style('font-weight', '700');
   }
 
   update(props) {

@@ -22,8 +22,7 @@ Algorithms are pervasive in modern society, and brain teaser type puzzles are a 
 
 [Aside]
 [image style:`{width: '100%', border: '3px solid #b45326'}` src:"static/images/stack.jpg" /]
-Visualize the above.
-Warning: you may become hungry.
+Visualize the above, but stacked 100 pancakes tall!
 [/Aside]
 
 Consider the following problem: you have a spatula and 100 blueberry pancakes.
@@ -33,9 +32,9 @@ For example: pancake 1 has 1 blueberry, pancake 2 has two blueberrys, and so on.
 // where one pancake has 1 blueberry in it, one pancake has 2 blueberries in it, ..., and one pancake has 100 blueberries in it (yum).
 These pancakes are in a stack and ordered randomly.
 
-Now, if you repeatedly look at the pancake on the top of the stack, then flip the top [Equation]x[/Equation] pancakes where [Equation]x[/Equation] is the number of blueberries in the top pancake (i.e., pick up the first [Equation]x[/Equation] pancakes, reverse them, and set them down), can you prove the following:
+[pancakeVis /]
 
-// [pancakeVis /]
+Now, if you repeatedly look at the pancake on the top of the stack, then flip the top [Equation]x[/Equation] pancakes where [Equation]x[/Equation] is the number of blueberries in the top pancake (i.e., pick up the first [Equation]x[/Equation] pancakes, reverse them, and set them down), can you prove the following:
 
 **Given any pancake order, if you repeated flip the top pancakes according to our rule, the pancake with 1 blueberry will eventually appear on the top of the stack.**
 
@@ -241,7 +240,6 @@ Now:
 * Once you flip the largest it cannot ever return to its initial position based on our reasoning above.
 * If it can't return to its initial position, then it is impossible to have a cycle, a contradiction.
 * Because there are a finite number of configurations of the stack ([Equation]N![/Equation]), and there are no cycles, each flip gives us a new unique configuration, therefore if we keep flipping then we will eventually get to the state with a 1 on top, which then halts
-* Because there are a finite number of configurations of the stack ([Equation]N![/Equation]), and there are no cycles, each flip gives us a new unique configuration, therefore if we keep flipping then we will eventually get to the state with a 1 on top, which then halts.
 
 ## Acknowledgements
 
