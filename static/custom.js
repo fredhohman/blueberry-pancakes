@@ -1,11 +1,11 @@
 $(document).ready(function(){
     $('.treeNode').hide()
 
-    $("#superRootNode").find("li").each(function(){
+    $(".superRootNode").find("li").each(function(){
         $(this).css("list-style","none");
     });
 
-    $("#superRootNode").find("li").each(function(){
+    $(".superRootNode").find("li").each(function(){
 
         if($(this).next().children().length == 0){
             $(this).prepend("[-] ");
