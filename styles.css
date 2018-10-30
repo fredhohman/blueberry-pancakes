@@ -41,7 +41,7 @@ a {
 }
 
 h2, h3, h4, h5, h6 {
-  color: var(--pancake-medium-brown);
+  color: var(--blueberry-blue-light);
   border: none;
   font-family: 'Cabin Sketch'
 }
@@ -69,7 +69,39 @@ a:hover {
 }
 
 .pancake {
-  fill: var(--pancake-light-brown);
+  fill: peru;
+  /* fill: var(--pancake-light-brown); */
   stroke-width: 2;
   stroke: var(--pancake-medium-brown);
+}
+
+#flip-message {
+  font-weight: 500;
+  font-size: 24px;
+  fill: var(--pancake-dark-brown)
+}
+
+button {
+  cursor: pointer;
+  border: 2px solid var(--blueberry-blue-light);
+  background: none;
+  box-shadow: none;
+  border-radius: 10px;
+  padding: 10px 20px 10px 20px;
+  margin: 2px;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--pancake-dark-brown);
+}
+
+button:hover {
+  background-color: var(--pancake-light-brown);
+}
+
+button:active {
+  background-color: var(--pancake-medium-brown);
+}
+
+button:focus {
+  outline: 0;
 }

@@ -35,6 +35,8 @@ These pancakes are in a stack and ordered randomly.
 
 Now, if you repeatedly look at the pancake on the top of the stack, then flip the top [Equation]x[/Equation] pancakes where [Equation]x[/Equation] is the number of blueberries in the top pancake (i.e., pick up the first [Equation]x[/Equation] pancakes, reverse them, and set them down), can you prove the following:
 
+// [pancakeVis /]
+
 **Given any pancake order, if you repeated flip the top pancakes according to our rule, the pancake with 1 blueberry will eventually appear on the top of the stack.**
 
 [br/]
@@ -51,14 +53,14 @@ Let's say that instead of 100 blueberry pancakes, we have 5 blueberry pancakes (
 [var name:"reset" value:0 /]
 [pancakeStack flip:flip reset:reset numOfPancakes:5/]
 
-You have flipped [Display value:flip format:"d" /] times.
+You have flipped **[Display value:flip format:"d" /]** times.
 
 [button onClick:`flip++`]
-  Flip me.
+  Flip the pancakes!
 [/button]
 
 [button onClick:`reset++;flip=0;`]
-  Reset.
+  New batch
 [/button]
 
 
@@ -246,7 +248,7 @@ Now:
 ## References
 
 
-# Technical footnote
+## Technical footnote
 
 We've included the Python code that we used to generate the trees from above.
 
@@ -285,7 +287,7 @@ def expand(node, indent="", current_depth=0, print_tree=False):
 
 We can use `expand([5,4,3,2,1], print_tree=True)` to print the tree from earlier in the article:
 
-```
+```python
 0 [5, 4, 3, 2, 1]
     1 [1, 2, 3, 4, 5]
        2 [1, 2, 5, 4, 3]

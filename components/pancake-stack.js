@@ -3,7 +3,7 @@ const D3Component = require('idyll-d3-component');
 const d3 = require('d3');
 
 const size = 650;
-const height = 300;
+const height = 250;
 const numOfPancakes = 5;
 
 function shuffle(array) {
@@ -80,28 +80,54 @@ class pancakeStack extends D3Component {
             .attr("rx", 20)
             .attr("ry", 20)
             .attr("x", 50)
-            .attr("y", function (d, i) { return (50 * i + 10 * (i + 1)) })
+            .attr("y", function (d, i) { return (35 * i + 10 * (i + 1)) })
             .attr("width", 300)
-            .attr("height", 50)
+            .attr("height", 40)
             .classed('pancake', true)
-            .style('fill', function (d) { return pancakeColor(d.number) })
 
         stack.append('text')
             .text(function (d, i) { return d.number })
             .attr('x', 50 + 150)
-            .attr("y", function (d, i) { return 34 + (50 * i + 10 * (i + 1)) })
+            .attr("y", function (d, i) { return 31 + (35 * i + 10 * (i + 1)) })
             .classed('pancake-label', true)
+            .style('fill', '#0948be')
+            .style('font-size', '30px')
+            .style('font-weight', 700)
+            // .style('stroke', '#fff2a4')
+            // .style('stroke-width', '0.5px')
+
+        // stack.append('circle')
+            // .attr('cx', (d,i) => i*40)
+            // .attr('cy', 40)
+            // .attr('r', 4)
+
+        let flipMessage = svg.append('text')
+            // .text('You flipped pancake 1 to the top!')
+            .attr('id', 'flip-message')
+            .style('visibility', 'hidden')
+
+        flipMessage
+            .append('tspan')
+            .text('You flipped pancake 1')
+            .attr('x', 400)
+            .attr('y', 25)
+
+        flipMessage
+            .append('tspan')
+            .text('to the top! 🥞')
+            .attr('x', 400)
+            .attr('y', 55)
     }
 
     update(props, oldProps) {
 
-        if(props.flip > oldProps.flip){ // We pressed flip
+        if (props.flip > oldProps.flip){ // We pressed flip
             console.log('Updating pancake stack');
             this.doFlip();
-        }else if(props.reset > oldProps.reset){ // We pressed reset
+        } else if (props.reset > oldProps.reset){ // We pressed reset
             console.log('Reseting pancake stack');
             this.reset();
-        }else{
+        } else {
             console.debug("Error!");
         }
     }
@@ -111,10 +137,17 @@ class pancakeStack extends D3Component {
             .data(this.pancakes)
             .text(function (d) { return d.number })
 
+        if (this.pancakes[0].number === 1) {
+            d3.select('#flip-message')
+                .style('visibility', 'visible')
+        } else { 
+            d3.select('#flip-message')
+                .style('visibility', 'hidden')
+        }
 
-        d3.selectAll('.pancake')
-            .data(this.pancakes)
-            .style('fill', function (d) { return pancakeColor(d.number) })
+        // d3.selectAll('.pancake')
+            // .data(this.pancakes)
+            // .style('fill', function (d) { return pancakeColor(d.number) })
     }
 }
 
