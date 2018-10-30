@@ -27,7 +27,7 @@ Visualize the above, but stacked 100 pancakes tall!
 
 Consider the following problem: you have a spatula and 100 blueberry pancakes.
 Each pancake is numbered according to how many blueberrys it has.
-For example: pancake 1 has 1 blueberry, pancake 2 has two blueberrys, and so on.
+For example: pancake "1" has 1 blueberry, pancake "2" has two blueberrys, and so on.
 // [pancake number:2/]
 // where one pancake has 1 blueberry in it, one pancake has 2 blueberries in it, ..., and one pancake has 100 blueberries in it (yum).
 These pancakes are in a stack and ordered randomly.
@@ -85,7 +85,7 @@ Here, the "bottom" of the stack of pancakes is the leftmost number in the string
 [/ul]
 [/div]
 
-Here we notice that in 3 out of the 4 cases, the "5" pancake is at the bottom of the stack already, and in the case that it is not at the bottom, it must be moved to the bottom!
+Here we notice that in 3 out of the 4 cases, pancake "5" is at the bottom of the stack already, and in the case that it is not at the bottom, it must be moved to the bottom!
 
 What happens if we expand our previous tree structure a level deeper:
 
@@ -248,7 +248,7 @@ Now:
 * There exists an impressive body of technical work dealing with pancakes. Interested readers should check out the corresponding [Wikipedia page](https://en.wikipedia.org/wiki/Pancake_sorting).
 * This article was created using [a href:"https://idyll-lang.org/"]Idyll[/a].
 * Thanks to [a href:"https://twitter.com/mathisonian"]@mathisonian[/a] for help and feedback.
-* The source code is available on [a href:"https://github.com/fredhohman/blue-berry-pancakes"]Github[/a].
+* The source code is available on [a href:"https://github.com/fredhohman/blueberry-pancakes"]Github[/a].
 
 ## Technical footnote
 
@@ -287,7 +287,7 @@ def expand(node, indent="", current_depth=0, print_tree=False):
     return largest_depth
 ```
 
-We can use `expand([5,4,3,2,1], print_tree=True)` to print the tree from earlier in the article:
+For example, we can use `expand([5,4,3,2,1], print_tree=True)` to print the tree from earlier in the article (the numbers before each stack indicate its depth in the tree):
 
 ```python
 0 [5, 4, 3, 2, 1]
