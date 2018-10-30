@@ -110,9 +110,9 @@ What happens if we go a level deeper:
 
 Try to expand one more level and notice what happens! You may have noticed several things:
 
-* It is impossible to find a configuration of pancakes that can be flipped resulting in some of the configurations that we have in our 2nd level. If you keep expanding these you might also notice that the only series that you can expand are those that have elements which are in their sorted location, for example we can expand "5,4,3,1,2" 3 times, around "5", "4" and "3" because these are the numbers that are in their final positions in "5,4,3,1,2".
-* Once you flip the largest number in your stack of pancakes, you can not change its position through any subsequent flip. In some cases (like the ones enumerated below), this results in a sorted stack of pancakes, however in other cases, the "1" pancake can come to the top without the remaining pancakes being sorted. This observation is an important one for the formal proof that we give!
-* There is at most 1 way to move the last pancake in the stack (by flipping the n'th pancake), there are at most two flips that can move the second to last pancake in the stack (by flipping the n'th and n-1'th pancakes), etc.
+* **asdf** It is impossible to find a configuration of pancakes that can be flipped resulting in some of the configurations that we have in our 2nd level. If you keep expanding these you might also notice that the only series that you can expand are those that have elements which are in their sorted location, for example we can expand "5,4,3,1,2" 3 times, around "5", "4" and "3" because these are the numbers that are in their final positions in "5,4,3,1,2".
+* **asdf** Once you flip the largest number in your stack of pancakes, you can not change its position through any subsequent flip. In some cases (like the ones enumerated below), this results in a sorted stack of pancakes, however in other cases, the "1" pancake can come to the top without the remaining pancakes being sorted. This observation is an important one for the formal proof that we give!
+* **asdf** There is at most 1 way to move the last pancake in the stack (by flipping the [Equation]N[/Equation]'th pancake), there are at most two flips that can move the second to last pancake in the stack (by flipping the n'th and n-1'th pancakes), etc.
 
 
 ### Full tree
@@ -213,3 +213,7 @@ Now:
 * Once you flip the largest it cannot ever return to its initial position based on our reasoning above
 * If it can't return to its initial position, then it is impossible to have a cycle, a contradiction.
 * Because there are a finite number of configurations of the stack ([Equation]N![/Equation]), and there are no cycles, each flip gives us a new unique configuration, therefore if we keep flipping then we will eventually get to the state with a 1 on top, which then halts
+
+## Acknowledgements
+
+## References
