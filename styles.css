@@ -105,3 +105,12 @@ button:active {
 button:focus {
   outline: 0;
 }
+
+.superRootNode li {
+  color: var(--blueberry-blue-light) !important;
+  cursor: pointer;
+}
+
+.superRootNode li:hover {
+  color: var(--blueberry-blue) !important;
+}
