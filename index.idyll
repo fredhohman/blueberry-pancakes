@@ -132,7 +132,7 @@ Click on nodes to expand them and explore the sequence of states that lead to ha
 *Note that "5,4,3,2,1" is not the only final configuration in which the "1" pancake finishes on top.*
 [br/] [br/]
 It is possible to reach many other final configurations where "1" is at the top of the stack.
-For example, consider the cases where the "1" pancake is initally on top, the process will immediately halt, however the remaining pancakes can be in any of 4! different configurations. 
+For example, consider the cases where the "1" pancake is initally on top, the process will immediately halt, however the remaining pancakes can be in any of [Equation]4![/Equation] different configurations. 
 [/Aside]
 
 [div className:"superRootNode"]
@@ -213,7 +213,7 @@ For example, consider the cases where the "1" pancake is initally on top, the pr
 
 [script src:"static/custom.js"/]
 
-## How can you finish?
+## How can you prove it?
 
 Now that we are experimentally convinced that our statement is "probably" true, and are equipped with our observations about how the pancake flipping process behaves, we must now determine how to formally prove that the "1" pancake will always come out on top!
 As we hinted in the previous section, we will use our observation that once you flip the largest pancake in the stack you can't move it again.
@@ -234,3 +234,85 @@ Now:
 * Once you flip the largest it cannot ever return to its initial position based on our reasoning above.
 * If it can't return to its initial position, then it is impossible to have a cycle, a contradiction.
 * Because there are a finite number of configurations of the stack ([Equation]N![/Equation]), and there are no cycles, each flip gives us a new unique configuration, therefore if we keep flipping then we will eventually get to the state with a 1 on top, which then halts.
+
+
+# Technical footnote
+
+We've included the Python code that we used to generate the trees from above.
+
+```python
+def inverse_flip(node, i):
+    '''Given a node and an index, return the node
+    that results from having previously flipped node[i]'''
+    return node[:i] + node[i+1:][::-1] + [node[i]]
+
+def expand(node, indent="", current_depth=0, print_tree=False):
+    '''Recursive method for printing out all configurations
+    that lead to a given node. Returns the largest depth reached
+    by a child node.'''
+    if print_tree:
+        print(indent,current_depth,node)
+    
+    largest_depth = current_depth
+    for i in range(len(node)-1):
+        if i + node[i] == len(node): # we can do a flip
+            new_node = inverse_flip(node, i)
+            
+            # recurse and keep track of the deepest child node
+            t_largest_depth = expand(
+                new_node,
+                indent+"   ",
+                current_depth+1,
+                print_tree=print_tree
+            )
+            largest_depth = max(
+                largest_depth,
+                t_largest_depth
+            )
+
+    return largest_depth
+```
+
+We can use `expand([5,4,3,2,1], print_tree=True)` to print the tree from earlier in the article:
+
+```
+0 [5, 4, 3, 2, 1]
+    1 [1, 2, 3, 4, 5]
+       2 [1, 2, 5, 4, 3]
+    1 [5, 1, 2, 3, 4]
+       2 [4, 3, 2, 1, 5]
+    1 [5, 4, 1, 2, 3]
+       2 [3, 2, 1, 4, 5]
+       2 [5, 3, 2, 1, 4]
+          3 [4, 1, 2, 3, 5]
+       2 [5, 4, 1, 3, 2]
+          3 [2, 3, 1, 4, 5]
+          3 [5, 2, 3, 1, 4]
+             4 [4, 1, 3, 2, 5]
+                5 [4, 1, 5, 2, 3]
+                   6 [4, 1, 5, 3, 2]
+                5 [4, 1, 3, 5, 2]
+                   6 [4, 1, 2, 5, 3]
+             4 [5, 2, 4, 1, 3]
+                5 [3, 1, 4, 2, 5]
+                   6 [3, 1, 4, 5, 2]
+    1 [5, 4, 3, 1, 2]
+       2 [2, 1, 3, 4, 5]
+          3 [2, 1, 5, 4, 3]
+       2 [5, 2, 1, 3, 4]
+          3 [4, 3, 1, 2, 5]
+             4 [4, 3, 1, 5, 2]
+       2 [5, 4, 2, 1, 3]
+          3 [3, 1, 2, 4, 5]
+          3 [5, 3, 1, 2, 4]
+             4 [4, 2, 1, 3, 5]
+             4 [5, 3, 1, 4, 2]
+                5 [2, 4, 1, 3, 5]
+                   6 [2, 5, 3, 1, 4]
+                      7 [2, 5, 4, 1, 3]
+```
+
+From this we can see that the longest possible path to "5,4,3,2,1" takes 7 flips starting from "2,5,4,1,3".
+In fact, this is the longest path considering **any** final configuration using "5" pancakes, i.e. out of all possible final configurations using 5 pancakes, the greatest number of flips happens when the final configuration is sorted.
+Is it the case for every [Equation]N[/Equation], that the longest path from intial condition to a final condition must be when the final condition is in a sorted order? 
+In other words, what is the worst case number of flips that can happen for [Equation]N[/Equation] pancakes?
