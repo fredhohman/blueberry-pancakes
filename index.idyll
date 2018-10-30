@@ -125,6 +125,7 @@ Try to expand one more level and notice what happens! You may have observed seve
 ### Full tree
 
 For completeness (and for you, if you don't want to manually expand the above tree), here is the full tree that leads to the sorted end configuration, "5,4,3,2,1"!
+We've included some Python code to reproduce this and encourage further exploration at the [bottom of the page](#technical-footnote). 
 Click on nodes to expand them and explore the sequence of states that lead to having the stack of pancakes in sorted order.
 
 [Aside]
@@ -251,6 +252,7 @@ Now:
 * The source code is available on [a href:"https://github.com/fredhohman/blueberry-pancakes"]Github[/a].
 
 ## Technical footnote
+[a id:"technical-footnote"/]
 
 We've included the Python code that we used to generate the trees from above.
 
