@@ -9,7 +9,8 @@
     "googleFonts": [
       "Cabin Sketch",
       "Lato"
-    ]
+    ],
+    "context": "./analytics/context"
   },
   "dependencies": {
     "d3": "^4.0.0",
