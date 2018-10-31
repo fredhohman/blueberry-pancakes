@@ -29,7 +29,7 @@ Each pancake is numbered according to how many blueberrys it has.
 For example: pancake 1, which we denote as [pancake number:1/], has one blueberry, [pancake number:2/] has two blueberrys, and so on.
 These pancakes are in a stack and ordered randomly.
 
-[pancakeVis /]
+// [pancakeVis /]
 
 Now, if you repeatedly look at the pancake on the top of the stack, then flip the top [Equation]x[/Equation] pancakes where [Equation]x[/Equation] is the number of blueberries in the top pancake (i.e., pick up the first [Equation]x[/Equation] pancakes, reverse them, and set them down), can you prove the following:
 

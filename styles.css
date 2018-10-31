@@ -106,6 +106,12 @@ button:focus {
   outline: 0;
 }
 
+.superRootNode {
+  background: #ffffff;
+  padding: 10px;
+  border: 5px solid var(--pancake-medium-brown)
+}
+
 .superRootNode li {
   color: var(--blueberry-blue-light) !important;
   cursor: pointer;
