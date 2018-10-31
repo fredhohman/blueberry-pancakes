@@ -109,7 +109,7 @@ class pancakeStack extends D3Component {
 
         flipMessage
             .append('tspan')
-            .text('You flipped pancake 1')
+            .text('You flipped P1')
             .attr('x', 400)
             .attr('y', 25)
 
