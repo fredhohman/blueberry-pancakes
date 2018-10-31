@@ -4,7 +4,7 @@ class pancake extends React.Component {
     render() {
 
         const { idyll, hasError, updateProps, ...props } = this.props;
-        let pancakeSpanStyle = { fontWeight: '700', color: '#b45326' };
+        let pancakeSpanStyle = { fontWeight: '700', color: '#0948be' };
         let numberSpanStyle = { fontWeight: '700', color: '#0948be' };
 
         return (

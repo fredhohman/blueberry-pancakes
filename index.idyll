@@ -137,7 +137,8 @@ For example, consider the boring configurations where [pancake number:1/] is ini
 
 ## The complete pancake placement tree
 
-For completeness, and for those without pen and paper, below is the compelte tree of all configurations that lead to the sorted end configuration of **"5,4,3,2,1"**!
+For completeness, and for those without pen and paper, below is the complete tree of all configurations that lead to the sorted end configuration of **"5,4,3,2,1"**!
+We've included Python code to reproduce this and encourage further exploration at the [end of the article](#technical-footnote). 
 Click on configurations to expand them to see the sequence of configurations that lead to having the stack of pancakes in sorted order.
 
 [div className:"superRootNode"]
@@ -267,6 +268,7 @@ Interested readers should check out the corresponding [Wikipedia page](https://e
 [hr/]
 
 ## Technical footnote
+[a id:"technical-footnote"/]
 
 Below you'll find the Python code that we used to generate the trees above.
 
