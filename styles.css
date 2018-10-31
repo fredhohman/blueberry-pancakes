@@ -115,7 +115,7 @@ button:focus {
 .superRootNode {
   background: #ffffff;
   padding: 10px;
-  border: 5px solid var(--pancake-medium-brown)
+  border: 4px solid var(--pancake-medium-brown)
 }
 
 .superRootNode li {

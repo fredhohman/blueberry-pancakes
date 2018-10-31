@@ -1,6 +1,9 @@
 [meta
   title:"Blueberry Pancakes"
-  description:"A toy algorithms problem involving stacks of deliscious blueberry pancakes illustrated in Idyll."
+  description:"A toy algorithms problem."
+  shareImageUrl:"https://idyll.pub/post/dimensionality-reduction-293e465c2a3443e8941b016d/static/images/share.png"
+  shareImageWidth:"1600"
+  shareImageHeight:"800"
 /]
 
 [Header
@@ -54,8 +57,11 @@ Keep clicking and follow [pancake number:1/].
 [var name:"reset" value:0 /]
 [pancakeStack flip:flip reset:reset numOfPancakes:5/]
 
+[span style:`{textAlign: 'center'}`]
+
 You have flipped **[Display value:flip format:"d" /]** times.
 
+[div]
 [button onClick:`flip++`]
   Flip the pancakes!
 [/button]
@@ -63,6 +69,9 @@ You have flipped **[Display value:flip format:"d" /]** times.
 [button onClick:`reset++;flip=0;`]
   New batch
 [/button]
+[/div]
+
+[/span]
 
 Nice flipping! You may have noticed that [pancake number:1/] will rise to the top pretty quickly and then get stuck there.
 If you repeat this a few times (click "New batch" to randomize the stack), we also see that, sometimes, all the pancakes will end up sorted.
