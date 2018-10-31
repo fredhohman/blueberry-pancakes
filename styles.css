@@ -41,7 +41,7 @@ a {
 }
 
 h2, h3, h4, h5, h6 {
-  color: var(--blueberry-blue-light);
+  color: var(--blueberry-blue);
   border: none;
   font-family: 'Cabin Sketch'
 }
@@ -53,6 +53,10 @@ h2 {
 p, li {
   color: var(--pancake-dark-brown);
   font-size: 18px;
+}
+
+li {
+  padding-bottom: 10px;
 }
 
 a, a:visited, a:hover {
@@ -78,12 +82,13 @@ a:hover {
 #flip-message {
   font-weight: 500;
   font-size: 24px;
-  fill: var(--pancake-dark-brown)
+  fill: var(--pancake-dark-brown);
+  font-family: "Lato";
 }
 
 button {
   cursor: pointer;
-  border: 2px solid var(--blueberry-blue-light);
+  border: 2px solid var(--blueberry-blue);
   background: none;
   box-shadow: none;
   border-radius: 10px;
@@ -100,6 +105,7 @@ button:hover {
 
 button:active {
   background-color: var(--pancake-medium-brown);
+  color: #ffffff;
 }
 
 button:focus {
@@ -119,6 +125,15 @@ button:focus {
 
 .superRootNode li:hover {
   color: var(--blueberry-blue) !important;
+}
+
+.noClick li {
+  color: var(--pancake-medium-brown) !important;
+  cursor: auto;
+}
+
+.noClick li:hover {
+  color: var(--pancake-medium-brown) !important;
 }
 
 pre {

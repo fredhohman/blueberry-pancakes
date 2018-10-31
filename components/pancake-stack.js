@@ -86,7 +86,7 @@ class pancakeStack extends D3Component {
             .classed('pancake', true)
 
         stack.append('text')
-            .text(function (d, i) { return d.number })
+            .text(function (d, i) { return 'P' + d.number })
             .attr('x', 50 + 150)
             .attr("y", function (d, i) { return 31 + (35 * i + 10 * (i + 1)) })
             .classed('pancake-label', true)
@@ -95,6 +95,7 @@ class pancakeStack extends D3Component {
             .style('font-weight', 700)
             // .style('stroke', '#fff2a4')
             // .style('stroke-width', '0.5px')
+            .style('text-anchor', 'middle')
 
         // stack.append('circle')
             // .attr('cx', (d,i) => i*40)
@@ -108,7 +109,7 @@ class pancakeStack extends D3Component {
 
         flipMessage
             .append('tspan')
-            .text('You flipped pancake 1')
+            .text('You flipped P1')
             .attr('x', 400)
             .attr('y', 25)
 
@@ -135,7 +136,7 @@ class pancakeStack extends D3Component {
     redraw(){
         d3.selectAll('.pancake-label')
             .data(this.pancakes)
-            .text(function (d) { return d.number })
+            .text(function (d) { return 'P' + d.number })
 
         if (this.pancakes[0].number === 1) {
             d3.select('#flip-message')
