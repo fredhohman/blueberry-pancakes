@@ -145,8 +145,11 @@ pre code {
   background: #ffffff;
 }
 
-/* hr {
-  color: red;
-  background: red;
-  fill: red;
-} */
+hr {
+  display: block;
+  height: 2px;
+  border: 0;
+  border-top: 2px solid var(--pancake-medium-brown);
+  margin: 1em 0;
+  padding: 0;
+}
