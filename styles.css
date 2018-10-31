@@ -128,7 +128,7 @@ button:focus {
 
 .noClick li {
   color: var(--pancake-medium-brown) !important;
-  cursor: pointer;
+  cursor: auto;
 }
 
 .noClick li:hover {
