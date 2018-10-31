@@ -27,9 +27,7 @@ Visualize the above, but stacked 100 pancakes tall!
 
 Consider the following problem: you have a spatula and 100 blueberry pancakes.
 Each pancake is numbered according to how many blueberrys it has.
-For example: pancake "1" has 1 blueberry, pancake "2" has two blueberrys, and so on.
-// [pancake number:2/]
-// where one pancake has 1 blueberry in it, one pancake has 2 blueberries in it, ..., and one pancake has 100 blueberries in it (yum).
+For example: pancake 1, which we denote as [pancake number:1/], has one blueberry, [pancake number:2/] has two blueberrys, and so on.
 These pancakes are in a stack and ordered randomly.
 
 [pancakeVis /]
@@ -42,11 +40,13 @@ Now, if you repeatedly look at the pancake on the top of the stack, then flip th
 
 *Hint: this will work for other numbers of pancakes besides 100, specifically any integer number greater than 1.*
 
-## Where can you start?
+## Starting with a short stack
 
-One of the first things that I like to do when trying to prove something is to work through toy instances of the problem by hand (or in a Jupyter notebook) to get an intuition for what is going on.
-Let's say that instead of 100 blueberry pancakes, we have 5 blueberry pancakes (again in some random order), what happens if we apply the process described in the problem?
-
+A good first thing to try when proving something is to work through toy instances of the problem by hand to get an intuition for what is going on.
+Let's say that instead of 100 blueberry pancakes, we have 5 blueberry pancakes (again in some random order).
+What happens if we apply the process described in the problem above?
+Click the "Flip the pancakes!" button to flip once.
+Keep clicking and follow [pancake number:1/].
 
 [var name:"flip" value:0 /]
 [var name:"reset" value:0 /]
@@ -63,15 +63,20 @@ You have flipped **[Display value:flip format:"d" /]** times.
 [/button]
 
 
-Cool! We can see that the "1" pancake will come to the top pretty quickly and then get stuck there.
-If we repeat this a few times, we can also see that, sometimes, all the pancakes will end up sorted.
+Cool! We see that [pancake number:1/] will rise to the top pretty quickly and then get stuck there.
+If we repeat this a few times (click "New batch" to randomize the stack), we also see that, sometimes, all the pancakes will end up sorted.
 This does not happen every time, but it does happen often enough to be curious...
-Something about the flipping process that we are following wants to sort the pancakes.
+Something about the flipping process we use wants to sort the pancakes.
 
-To dig further into this, we can enumerate the configurations in which this will happen (atleast for 5 pancakes!).
-In this case, the last flip that we do must move the "1" pancake to the top, and keep all of the pancakes in sorted order; it turns out that there are just 4 cases in which this can happen.
-The following tree structure shows the final sorted configuration at the root, "5,4,3,2,1", then all the configurations that could lead to that outcome as children.
-Here, the "bottom" of the stack of pancakes is the leftmost number in the string, while the top of the stack is the rightmost number (e.g. in "3,2,4,1,5", pancake "3" is on the bottom and pancake "5" is on top).
+## All possible pancake placements
+
+To dig further into this, we can enumerate the configurations in which the stack ends up sorted (at least for 5 pancakes!).
+For this to happen, the last flip must move [pancake number:1/] to the top, and keep all other pancakes in sorted order—it turns out that there are only 4 cases where this can happen.
+
+The following tree structure shows the final sorted configuration at the root: **"5,4,3,2,1"**.
+Beneath, it shows all the configurations that could lead to that outcome as children.
+Here, the *bottom* of the stack of pancakes is the leftmost number in the list, while the *top* of the stack is the rightmost number.
+For example: in **"3,2,4,1,5"**, [pancake number:3/] is on the bottom and [pancake number:5/] is on top.
 
 [div className:"superRootNode"]
 [ul]
@@ -85,9 +90,9 @@ Here, the "bottom" of the stack of pancakes is the leftmost number in the string
 [/ul]
 [/div]
 
-Here we notice that in 3 out of the 4 cases, pancake "5" is at the bottom of the stack already, and in the case that it is not at the bottom, it must be moved to the bottom!
+Notice that in 3 out of the 4 configurations, [pancake number:5/] is at the bottom of the stack already, and in the case that it is not at the bottom, it must be moved to the bottom!
 
-What happens if we expand our previous tree structure a level deeper:
+Now, what happens if we expand our previous tree structure a level deeper:
 
 [div className:"superRootNode"]
 [ul]
@@ -117,23 +122,24 @@ What happens if we expand our previous tree structure a level deeper:
 [/ul]
 [/div]
 
-Try to expand one more level and notice what happens! You may have observed several things:
+If you have pen and paper, try to expand one more level and notice what happens.
 
-* **Not all states are reversible.** It is impossible to find a configuration of pancakes that can be flipped resulting in some of the configurations that we have in our 2nd level. If you keep expanding these you might also notice that the only series that you can expand are those that have elements which are in their sorted location, for example we can expand "5,4,3,1,2" 3 times, around "5", "4" and "3" because these are the numbers that are in their final positions in "5,4,3,1,2".
-* **Flipping the largest pancake is a permanent move.** Once you flip the largest number in your stack of pancakes, you can not change its position through any subsequent flip. In some cases (like the ones enumerated in the trees we show), this results in a sorted stack of pancakes, however in other cases, the "1" pancake can come to the top without the remaining pancakes being sorted. [br/][br/] More formally, there is at most 1 way to move the last pancake in the stack (by flipping the [Equation]N[/Equation]'th pancake), there are at most two flips that can move the second to last pancake in the stack (by flipping the n'th and n-1'th pancakes), etc. [br/][br/] *This observation is an important one for our proof!* 
+* **Not all configurations are reversible.** It is impossible to find a configuration of pancakes that can be flipped resulting in some of the configurations listed in the 2nd level. If you keep expanding these you might notice that the only configurations that you can expand are those that have pancakes in their sorted location. For example, we can expand **"5,4,3,1,2"** 3 times, around [pancake number:5/], [pancake number:4/], and [pancake number:3/] because these are the pancakes that are in their final positions in **"5,4,3,1,2"**.
 
-### Full tree
-
-For completeness (and for you, if you don't want to manually expand the above tree), here is the full tree that leads to the sorted end configuration, "5,4,3,2,1"!
-We've included some Python code to reproduce this and encourage further exploration at the [bottom of the page](#technical-footnote). 
-Click on nodes to expand them and explore the sequence of states that lead to having the stack of pancakes in sorted order.
+* **Flipping the largest pancake is a permanent move.** Once you flip the largest number in your stack of pancakes, you cannot change its position through any subsequent flip. In some cases (like the ones enumerated in the trees above), this results in a sorted stack of pancakes; however, in other cases, [pancake number:1/] goes to the top without the remaining pancakes being sorted. [br/][br/] More formally, there is at most one way to move the last pancake in the stack (by flipping the [Equation]N[/Equation]'th pancake), there are at most two flips that can move the second to last pancake in the stack (by flipping the [Equation]N[/Equation]'th and [Equation]N-1[/Equation]'th pancakes), and so on. [br/][br/] *Teaser: this observation is an important one for our upcoming proof!* 
 
 [Aside]
-*Note that "5,4,3,2,1" is not the only final configuration in which the "1" pancake finishes on top.*
+**Aside.** Notice that **"5,4,3,2,1"** is not the only final configuration in which the [pancake number:1/] finishes on top!
 [br/] [br/]
-It is possible to reach many other final configurations where "1" is at the top of the stack.
-For example, consider the cases where the "1" pancake is initally on top, the process will immediately halt, however the remaining pancakes can be in any of [Equation]4![/Equation] different configurations. 
+It is possible to reach many other final configurations where [pancake number:1/] is at the top of the stack; however, these will not be sorted stacks.
+For example, consider the boring configurations where [pancake number:1/] is initally on top: no flips are needed, but the remaining pancakes could be in any of [Equation]4![/Equation] remaining different configurations. 
 [/Aside]
+
+## The complete pancake placement tree
+
+For completeness, and for those without pen and paper, below is the complete tree of all configurations that lead to the sorted end configuration of **"5,4,3,2,1"**!
+We've included Python code to reproduce this and encourage further exploration at the [end of the article](#technical-footnote). 
+Click on configurations to expand them to see the sequence of configurations that lead to having the stack of pancakes in sorted order.
 
 [div className:"superRootNode"]
 [ul]
@@ -218,43 +224,53 @@ For example, consider the cases where the "1" pancake is initally on top, the pr
 
 [script src:"static/custom.js"/]
 
-## How can you prove it?
+## The pancake proof
 
-Now that we are experimentally convinced that our statement is "probably" true, and are equipped with our observations about how the pancake flipping process behaves, we must now determine how to formally prove that the "1" pancake will always come out on top!
-As we hinted in the previous section, we will use our observation that once you flip the largest pancake in the stack you can't move it again.
+From the toy problem, now that we are convinced that our original problem statement is likely true, and we are equipped with our observations about how the pancake flipping process behaves, we will now formally prove that [pancake number:1/] will always come out on top!
+As hinted in the previous section, we will use our observation that once you flip the largest pancake in the stack you cannot move it again.
 
 Formally, our proof is as follows:
 
-Consider a stack of [Equation]N[/Equation] sequentially numbered blueberry pancakes in some random order.
+**Proof.** Consider a stack of [Equation]N[/Equation] sequentially numbered blueberry pancakes in some random order.
 
 First, observe that if the largest pancake, pancake [Equation]N[/Equation], in the stack is flipped, then it can never be moved again.
-For example, without loss of generality, let [Equation]N=100[/Equation].
-Then if pancake 100 is on top of the stack and it is flipped, then it will move to the bottom of the stack. In order to move this pancake again, there would need to be a pancake with more than 100 blueberries in the stack, but we already said [Equation]N[/Equation]=100, so this cannot be done.
+For example, [without loss of generality](https://en.wikipedia.org/wiki/Without_loss_of_generality), let [Equation]N=100[/Equation].
+Now, if pancake 100 is on top of the stack and is flipped, then it will move to the bottom of the stack.
+In order to move this pancake again, there would need to be a pancake with more than 100 blueberries in the stack, but we already said [Equation]N=100[/Equation], so this cannot be done.
 
-Now:
+The proof continues as follows:
 
 * Define a cycle as a list of greater than 2 states of the stack such that after a flip is performed in the last configuration you return to the first configuration.
-* Assume (for the sake of contradiction) that there is a cycle.
-* Out of all the first elements from each state in the cycle, one of them will have to be the largest .
-* Once you flip the largest it cannot ever return to its initial position based on our reasoning above.
-* If it can't return to its initial position, then it is impossible to have a cycle, a contradiction.
-* Because there are a finite number of configurations of the stack ([Equation]N![/Equation]), and there are no cycles, each flip gives us a new unique configuration, therefore if we keep flipping then we will eventually get to the state with a 1 on top, which then halts
+* [For the sake of contradiction](https://en.wikipedia.org/wiki/Proof_by_contradiction), assume that there is a cycle.
+* Out of all the first pancakes from each state in the cycle, one of them must be largest.
+* Once you flip the largest it cannot return to its initial position based on our reasoning above.
+* If the largest pancake cannot return to its initial position, then it is impossible to have a cycle, a contradiction.
+* Because there are a finite number of configurations of the stack ([Equation]N![/Equation] many configurations in total), and there are no cycles, each flip produces a new unique configuration; therefore, if we keep flipping then we will eventually arrive at the state with [pancake number:1/] on top, when the process then halts.
+
+## But I'm still hungry!
+
+If you're still craving more, there exists an impressive body of technical work dealing with pancakes—flipping, sorting, and even burning pancakes!
+Mathematicians get hungry too.
+Interested readers should check out the corresponding [Wikipedia page](https://en.wikipedia.org/wiki/Pancake_sorting).
 
 ## Acknowledgements
-- Thanks to Nebojsa Jojic and Kolya Malkin for the interesting problem.
-- Thanks Le Hou for the brainstorming session immediately following the introduction of said interesting problem.
 
+* Thanks to Nebojsa Jojic and Kolya Malkin for the interesting problem.
+* Thanks Le Hou for the brainstorming session immediately following the introduction of said interesting problem.
+* Thanks to [a href:"https://twitter.com/mathisonian"]@mathisonian[/a] for feedback.
 
 ## References
-* There exists an impressive body of technical work dealing with pancakes. Interested readers should check out the corresponding [Wikipedia page](https://en.wikipedia.org/wiki/Pancake_sorting).
+
 * This article was created using [a href:"https://idyll-lang.org/"]Idyll[/a].
-* Thanks to [a href:"https://twitter.com/mathisonian"]@mathisonian[/a] for help and feedback.
 * The source code is available on [a href:"https://github.com/fredhohman/blueberry-pancakes"]Github[/a].
+
+[br/]
+[hr/]
 
 ## Technical footnote
 [a id:"technical-footnote"/]
 
-We've included the Python code that we used to generate the trees from above.
+Below you'll find the Python code that we used to generate the trees above.
 
 ```python
 def inverse_flip(node, i):
@@ -267,19 +283,19 @@ def expand(node, indent="", current_depth=0, print_tree=False):
     that lead to a given node. Returns the largest depth reached
     by a child node.'''
     if print_tree:
-        print(indent,current_depth,node)
+        print(indent, current_depth,node)
     
     largest_depth = current_depth
-    for i in range(len(node)-1):
+    for i in range(len(node) - 1):
         if i + node[i] == len(node): # we can do a flip
             new_node = inverse_flip(node, i)
             
             # recurse and keep track of the deepest child node
             t_largest_depth = expand(
                 new_node,
-                indent+"   ",
-                current_depth+1,
-                print_tree=print_tree
+                indent + "   ",
+                current_depth + 1,
+                print_tree = print_tree
             )
             largest_depth = max(
                 largest_depth,
@@ -289,7 +305,13 @@ def expand(node, indent="", current_depth=0, print_tree=False):
     return largest_depth
 ```
 
-For example, we can use `expand([5,4,3,2,1], print_tree=True)` to print the tree from earlier in the article (the numbers before each stack indicate its depth in the tree):
+For example, we can use:
+
+```python
+expand([5,4,3,2,1], print_tree=True)
+```
+to print the tree from earlier in the article.
+The numbers before each stack indicate its depth in the tree.
 
 ```python
 0 [5, 4, 3, 2, 1]
@@ -328,7 +350,8 @@ For example, we can use `expand([5,4,3,2,1], print_tree=True)` to print the tree
                       7 [2, 5, 4, 1, 3]
 ```
 
-From this we can see that the longest possible path to "5,4,3,2,1" takes 7 flips starting from "2,5,4,1,3".
-In fact, this is the longest path considering **any** final configuration using "5" pancakes, i.e. out of all possible final configurations using 5 pancakes, the greatest number of flips happens when the final configuration is sorted.
-Is it the case for every [Equation]N[/Equation], that the longest path from intial condition to a final condition must be when the final condition is in a sorted order? 
+From this we see that the longest possible path to **"5,4,3,2,1"** takes 7 flips starting from **"2,5,4,1,3"**.
+In fact, this is the longest path considering *any* final configuration using 5 pancakes, i.e., out of all possible final configurations using 5 pancakes, the greatest number of flips occurs when the final configuration is sorted.
+
+To conclude, we will leave you with a question: Is it the case for every [Equation]N[/Equation], that the longest path from an intial configuration to a final configuration must be when the final configuration is in a sorted order? 
 In other words, what is the worst case number of flips that can happen for [Equation]N[/Equation] pancakes?

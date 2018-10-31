@@ -114,3 +114,18 @@ button:focus {
 .superRootNode li:hover {
   color: var(--blueberry-blue) !important;
 }
+
+pre {
+  background: var(--pancake-medium-brown) !important;
+  padding: 0.3em !important;
+}
+
+pre code {
+  background: #ffffff;
+}
+
+/* hr {
+  color: red;
+  background: red;
+  fill: red;
+} */
