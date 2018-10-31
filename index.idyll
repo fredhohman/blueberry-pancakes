@@ -141,6 +141,7 @@ We've included Python code to reproduce this and encourage further exploration a
 Click on configurations to expand them to see the sequence of configurations that lead to having the stack of pancakes in sorted order.
 
 [div className:"superRootNode"]
+[small]Click the nodes to expand![/small]
 [ul]
  [li] 5,4,3,2,1 [/li]
     [ul]
