@@ -53,12 +53,45 @@ class pancakeStack extends D3Component {
     doFlip(){
         let flipNum = this.pancakes[0].number
         let pancakesToBeFlipped = this.pancakes.slice(0, flipNum)
+        let self = this;
 
         for (let i = 0; i < pancakesToBeFlipped.length; i++) {
             this.pancakes[i] = pancakesToBeFlipped[pancakesToBeFlipped.length - 1 - i]
         }
 
-        this.redraw();
+        
+        let animation1 = $("g").each(function(i,e){
+            if(i < flipNum){
+                $(this).children().animate(
+                    {"placeholder":"+=50"},
+                    {
+                        duration: 1000,
+                        step: function(now, fx){
+                            let startVal = parseInt($(fx.elem).attr("startX"));
+                            $(this).attr("x", startVal+now)
+                        },
+                        complete: function(){
+                            self.redraw()
+                        }
+                    }
+                )
+            }
+        });
+
+        $("g").each(function(i,e){
+            if(i < flipNum){
+                $(this).children().animate(
+                    {"placeholder":"-=50"},
+                    {
+                        duration: 1000,
+                        step: function(now, fx){
+                            let startVal = parseInt($(fx.elem).attr("startX"));
+                            $(this).attr("x", startVal+now)
+                        }
+                    }
+                )
+            }
+        });
     }
 
     initialize(node, props) {
@@ -80,6 +113,7 @@ class pancakeStack extends D3Component {
             .attr("rx", 20)
             .attr("ry", 20)
             .attr("x", 50)
+            .attr("startX", 50)
             .attr("y", function (d, i) { return (35 * i + 10 * (i + 1)) })
             .attr("width", 300)
             .attr("height", 40)
@@ -88,6 +122,7 @@ class pancakeStack extends D3Component {
         stack.append('text')
             .text(function (d, i) { return 'P' + d.number })
             .attr('x', 50 + 150)
+            .attr("startX", 50 + 150)
             .attr("y", function (d, i) { return 31 + (35 * i + 10 * (i + 1)) })
             .classed('pancake-label', true)
             .style('fill', '#0948be')
