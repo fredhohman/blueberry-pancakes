@@ -86,7 +86,7 @@ class pancakeStack extends D3Component {
             .classed('pancake', true)
 
         stack.append('text')
-            .text(function (d, i) { return d.number })
+            .text(function (d, i) { return 'P' + d.number })
             .attr('x', 50 + 150)
             .attr("y", function (d, i) { return 31 + (35 * i + 10 * (i + 1)) })
             .classed('pancake-label', true)
@@ -135,7 +135,7 @@ class pancakeStack extends D3Component {
     redraw(){
         d3.selectAll('.pancake-label')
             .data(this.pancakes)
-            .text(function (d) { return d.number })
+            .text(function (d) { return 'P' + d.number })
 
         if (this.pancakes[0].number === 1) {
             d3.select('#flip-message')
