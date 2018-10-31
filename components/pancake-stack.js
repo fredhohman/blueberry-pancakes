@@ -95,6 +95,7 @@ class pancakeStack extends D3Component {
             .style('font-weight', 700)
             // .style('stroke', '#fff2a4')
             // .style('stroke-width', '0.5px')
+            .style('text-anchor', 'middle')
 
         // stack.append('circle')
             // .attr('cx', (d,i) => i*40)
